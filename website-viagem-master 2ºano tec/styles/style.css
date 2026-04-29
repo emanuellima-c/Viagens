@@ -26,6 +26,10 @@ header {
   background: no-repeat center/cover url('/assets/images.jpeg');
 }
 
+header  .header-content{
+  color: rgb(0, 0, 0);
+}
+
 
 header nav {
   display: flex;
