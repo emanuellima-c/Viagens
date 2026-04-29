@@ -22,7 +22,7 @@ a {
 }
 
 header {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 24px);
   background: no-repeat center/cover url('/assets/images.jpeg');
 }
 
