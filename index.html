@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
   <meta charset="UTF-8">
@@ -8,226 +8,596 @@
   
   <!-- PWA Meta Tags -->
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#2196f3">
+  <meta name="theme-color" content="#f56c11">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="KAYAK">
-  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="/icons/icon-192.jpg">
 
   <script src="https://unpkg.com/feather-icons"></script>
   <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
+  <!-- Barra de instalação PWA -->
+  <div id="install-banner" class="install-banner" hidden>
+    <div class="install-content">
+      <span>Instale o app KAYAK para acessar offline e ter uma experiência melhor</span>
+      <div class="install-actions">
+        <button id="install-btn" class="btn-install">Instalar App</button>
+        <button id="install-dismiss" class="btn-dismiss">Agora não</button>
+      </div>
+    </div>
+  </div>
+
   <header>
     <nav>
-      <p>KAYAK</p>
-      <ul>
+      <div class="nav-brand">
+        <p>KAYAK</p>
+      </div>
+      <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#pacotes">Pacotes</a></li>
         <li><a href="#servicos">Serviços</a></li>
         <li><a href="#contato">Contato</a></li>
-        <li><a href="/pagina-2/">Proxima pagina</a></li>
       </ul>
+      <div class="nav-actions">
+        <a href="pagina-2/index.html" class="nav-link-secondary">Portfólio</a>
+        <button id="nav-install-btn" class="btn-small" hidden>Instalar</button>
+      </div>
     </nav>
 
-    <div  id="home" class="header-content">
-      <h1>Suiça</h1>
-      <p>Conheça Suiça, e viva aventuras extraodinarias, o embarque está proximo, junte-se a nós nessa experiência</p>
-      <button>Saiba mais</button>
+    <div id="home" class="header-content">
+      <h1>Suíça</h1>
+      <p>Conheça a Suíça e viva aventuras extraordinárias. O embarque está próximo — junte-se a nós nessa experiência única.</p>
+      <div class="hero-actions">
+        <button onclick="document.getElementById('pacotes').scrollIntoView({ behavior: 'smooth' })">Ver pacotes</button>
+        <button class="btn-secondary" onclick="document.getElementById('contato').scrollIntoView({ behavior: 'smooth' })">Fale conosco</button>
+      </div>
     </div>
   </header>
 
   <section id="pacotes" class="pacotes">
-    <h1 class="pacotes-title">Conheça nossos pacotes</h1>
+    <div class="section-header">
+      <h2>Conheça nossos pacotes</h2>
+      <p>Experiências selecionadas com os melhores preços</p>
+    </div>
 
     <div class="pacotes-cards">
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="paris">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 3500,00</p>
+          <span class="old-price">R$ 8.990</span>
+          <span class="new-price">R$ 6.790</span>
         </div>
-        <img class="card-image" src="assets/paris.jpeg" alt="Paris">
+        <img class="card-image" src="assets/paris.jpeg" alt="Paris - Torre Eiffel ao pôr do sol" loading="lazy">
         <div class="card-content">
-          <h1>Pacote 5 noites hotel premium</h1>
+          <h3>Pacote 7 noites • Hotel Premium</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
-            <li><i data-feather="map"></i>Passeio</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
+            <li><i data-feather="map"></i>Passeio pela cidade</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('paris')">Saiba mais</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="miami">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 2200,00</p>
+          <span class="old-price">R$ 5.290</span>
+          <span class="new-price">R$ 3.890</span>
         </div>
-        <img class="card-image" src="assets/miami.jpeg" alt="Miami">
+        <img class="card-image" src="assets/miami.jpeg" alt="Miami Beach" loading="lazy">
         <div class="card-content">
-          <h1>Pacote 10 dias em Miami Beach</h1>
+          <h3>Pacote 8 dias • Miami Beach</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
             <li><i data-feather="map"></i>Passeio incluso</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('miami')">Saiba mais</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="berlim">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 2400,00</p>
+          <span class="old-price">R$ 7.990</span>
+          <span class="new-price">R$ 5.790</span>
         </div>
-        <img class="card-image" src="assets/berlim.jpeg" alt="Berlim">
+        <img class="card-image" src="assets/berlim.jpeg" alt="Berlim" loading="lazy">
         <div class="card-content">
-          <h1>Pacote 4 noites em Berlim</h1>
+          <h3>Pacote 6 noites • Berlim</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
-            <li><i data-feather="map"></i>Passeio</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
+            <li><i data-feather="map"></i>Passeio guiado</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('berlim')">Saiba mais</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="fortaleza">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 1500,00</p>
+          <span class="old-price">R$ 3.190</span>
+          <span class="new-price">R$ 2.390</span>
         </div>
-        <img class="card-image" src="assets/fortaleza.jpg" alt="Fortaleza">
+        <img class="card-image" src="assets/fortaleza.jpg" alt="Fortaleza - Praia" loading="lazy">
         <div class="card-content">
-          <h1>7 dias em Fortaleza </h1>
+          <h3>7 dias • Fortaleza &amp; Canoa Quebrada</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
-            <li><i data-feather="map"></i>Passeio</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
+            <li><i data-feather="map"></i>Passeio pela orla</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('fortaleza')">Saiba mais</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="jericoacoara">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 2000,00</p>
+          <span class="old-price">R$ 4.290</span>
+          <span class="new-price">R$ 3.290</span>
         </div>
-        <img class="card-image" src="assets/jeri.jpg" alt="jericoacoara">
+        <img class="card-image" src="assets/jeri.jpg" alt="Jericoacoara - Dunas" loading="lazy">
         <div class="card-content">
-          <h1>Pacote 14 dias em Jericoacoara</h1>
+          <h3>7 dias • Jericoacoara Aventura</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
-            <li><i data-feather="map"></i>Passeio de buggy</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
+            <li><i data-feather="map"></i>Passeio de buggy nas dunas</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('jericoacoara')">Saiba mais</button>
         </div>
       </div>
 
-      <div class="card">
-        <div class="card-tag card-tag-top">
-          <p>Promoção</p>
-        </div>
+      <div class="card" data-package="canada">
+        <div class="card-tag card-tag-top"><p>Promoção</p></div>
         <div class="card-tag card-tag-bottom">
-          <p>R$ 3200,00</p>
+          <span class="old-price">R$ 12.900</span>
+          <span class="new-price">R$ 9.490</span>
         </div>
-        <img class="card-image" src="assets/canada.jpg" alt="Canada">
+        <img class="card-image" src="assets/canada.jpg" alt="Moraine Lake, Canadá" loading="lazy">
         <div class="card-content">
-          <h1>Pacote 14 dias em Moraine lake, Canada</h1>
+          <h3>12 dias • Rockies &amp; Lagos</h3>
           <ul>
             <li><i data-feather="coffee"></i>Café da manhã incluso</li>
-            <li><i data-feather="wifi"></i>Wi-Fi</li>
-            <li><i data-feather="map"></i>Passeio</li>
+            <li><i data-feather="wifi"></i>Wi-Fi grátis</li>
+            <li><i data-feather="map"></i>Passeios nos lagos</li>
           </ul>
+          <button class="btn-card" onclick="showPackageModal('canada')">Saiba mais</button>
         </div>
       </div>
     </div>
   </section>
 
-  <section  id="servicos" class="servicos">
-    <h1 class="servicos-title">Serviços</h1>
+  <section id="servicos" class="servicos">
+    <div class="section-header">
+      <h2>Serviços exclusivos</h2>
+      <p>Suporte completo para sua viagem dos sonhos</p>
+    </div>
     <div class="servicos-cards">
-      <div class="card">
+      <div class="service-card">
         <i data-feather="map"></i>
-        <div class="card-content">
-          <h3>Tour guiados</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing sciunt deserunt, alias illo!</p>
-        </div>
-        <button>Saiba mais</button>
+        <h3>Tours guiados</h3>
+        <p>Guias locais experientes que revelam os segredos de cada destino.</p>
+        <button onclick="showServiceModal('tours')">Saiba mais</button>
       </div>
 
-      <div class="card">
+      <div class="service-card">
         <i data-feather="camera"></i>
-        <div class="card-content">
-          <h3>Fotográfia Profissional</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing sciunt deserunt, alias illo!</p>
-        </div>
-        <button>Saiba mais</button>
+        <h3>Fotografia profissional</h3>
+        <p>Registre cada momento com fotos incríveis feitas por especialistas.</p>
+        <button onclick="showServiceModal('foto')">Saiba mais</button>
       </div>
       
-      <div class="card">
+      <div class="service-card">
         <i data-feather="navigation"></i>
-        <div class="card-content">
-          <h3>Aluguel de Veículo</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing sciunt deserunt, alias illo!</p>
-        </div>
-        <button>Saiba mais</button>
+        <h3>Aluguel de veículos</h3>
+        <p>Carros, motos e transfers com seguro e assistência 24h.</p>
+        <button onclick="showServiceModal('veiculo')">Saiba mais</button>
       </div>
     </div>
   </section>
 
   <section id="contato" class="contato">
-    <div class="contato-card">
-      <h1>Entre em contato</h1>
-      <ul>
-        <li><i data-feather="map-pin"></i>Rua central</li>
-        <li><i data-feather="mail"></i>contato@KAYAK</li>
-        <li><i data-feather="phone"></i>(11) 9856-6598</li>
-      </ul>
+    <div class="contato-container">
+      <div class="contato-info">
+        <h2>Vamos planejar sua próxima viagem?</h2>
+        <ul>
+          <li><i data-feather="map-pin"></i>Av. Paulista, 1100 — São Paulo, SP</li>
+          <li><i data-feather="mail"></i>contato@kayakviagens.com.br</li>
+          <li><i data-feather="phone"></i>(11) 9856-6598</li>
+          <li><i data-feather="clock"></i>Seg a Sex: 9h às 18h</li>
+        </ul>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><i data-feather="instagram"></i></a>
+          <a href="#" aria-label="WhatsApp"><i data-feather="message-circle"></i></a>
+        </div>
+      </div>
+
+      <form class="contato-form" onsubmit="handleContactForm(event)">
+        <div class="form-row">
+          <input type="text" name="nome" placeholder="Seu nome" required>
+          <input type="email" name="email" placeholder="Seu e-mail" required>
+        </div>
+        <input type="tel" name="telefone" placeholder="Telefone / WhatsApp">
+        <textarea name="mensagem" placeholder="Qual destino você sonha conhecer?" rows="4" required></textarea>
+        <button type="submit" class="btn-primary">Enviar mensagem</button>
+        <p class="form-feedback" id="form-feedback"></p>
+      </form>
     </div>
-    <!--The div element for the map -->
-    <div id="map"></div>
   </section>
 
 
 
 
+  <!-- Modal de Detalhes -->
+  <div id="modal" class="modal" hidden style="display:none">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Fechar">×</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2026 KAYAK Viagens &amp; Aventuras. Sonhe. Viaje. Viva.</p>
+    <p class="footer-small">Feito com ❤️ para quem ama explorar o mundo</p>
+  </footer>
+
+  <!-- Bottom navigation (mobile) -->
+  <nav class="bottom-nav" aria-label="Navegação principal">
+    <a href="#home">🏠</a>
+    <a href="#pacotes">🧳</a>
+    <a href="#servicos">⭐</a>
+    <a href="#contato">💬</a>
+  </nav>
+
   <script>
-    // feather icons
+    // Feather icons
     feather.replace();
 
+    // Smooth scroll para links internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-            });
-        });
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
-    // Initialize and add the map
-    function initMap() {
-      // The location of Uluru
-      // var uluru = {lat: -25.344, lng: 131.036};
-      var uluru = { lat: 46.9481, lng: 7.4474 };
-      // The map, centered at Uluru
-      var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 4, center: uluru });
-      // The marker, positioned at Uluru
-      var marker = new google.maps.Marker({ position: uluru, map: map });
-    }
-  </script>
 
-  <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    // ==================== PWA: Service Worker + Install Prompt ====================
+    let deferredPrompt;
+
+    // Registra o Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // Caminho relativo → funciona tanto em localhost quanto no GitHub Pages
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+          .catch(err => console.warn('SW falhou:', err));
+      });
+    }
+
+    // Captura o evento de instalação do navegador
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      // Mostra banners discretos
+      const banner = document.getElementById('install-banner');
+      const navBtn = document.getElementById('nav-install-btn');
+      
+      if (banner) banner.hidden = false;
+      if (navBtn) navBtn.hidden = false;
+    });
+
+    // Botão principal do banner
+    const installBtn = document.getElementById('install-btn');
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('Usuário escolheu:', outcome);
+        deferredPrompt = null;
+        document.getElementById('install-banner').hidden = true;
+      });
+    }
+
+    // Dismiss do banner
+    const dismissBtn = document.getElementById('install-dismiss');
+    if (dismissBtn) {
+      dismissBtn.addEventListener('click', () => {
+        document.getElementById('install-banner').hidden = true;
+      });
+    }
+
+    // Botão pequeno na nav
+    const navInstall = document.getElementById('nav-install-btn');
+    if (navInstall) {
+      navInstall.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        navInstall.hidden = true;
+      });
+    }
+
+    // ==================== Modal de Pacotes ====================
+    const packageData = {
+      paris: {
+        title: "Paris — 7 Noites Premium",
+        price: "R$ 6.790",
+        desc: "Hospedagem em hotel 4★ no coração de Paris, café da manhã, city tour com guia e transfers.",
+        highlights: ["Voo ida e volta incluso", "Café da manhã diário", "Passeio pela Torre Eiffel + Sena", "Seguro viagem completo"],
+        duration: "8 dias / 7 noites"
+      },
+      miami: {
+        title: "Miami Beach — 8 Dias",
+        price: "R$ 3.890",
+        desc: "Férias na Flórida com praia, compras e diversão garantida.",
+        highlights: ["Hotel frente ao mar", "Café da manhã", "Ingresso para parques", "Aluguel de bike incluso"],
+        duration: "8 dias / 7 noites"
+      },
+      berlim: {
+        title: "Berlim — 6 Noites Cultural",
+        price: "R$ 5.790",
+        desc: "Explore a capital alemã com foco em história, arte e gastronomia.",
+        highlights: ["Hotel boutique central", "Passeio guiado pelo Muro", "Visita ao Reichstag", "Jantar típico alemão"],
+        duration: "7 dias / 6 noites"
+      },
+      fortaleza: {
+        title: "Fortaleza & Canoa Quebrada — 7 Dias",
+        price: "R$ 2.390",
+        desc: "Sol, mar e forró no Nordeste brasileiro com excelente custo-benefício.",
+        highlights: ["Hotel na Beira Mar", "Passeio a Canoa Quebrada", "City tour + Mercado Central", "Transfer aeroporto incluso"],
+        duration: "7 dias / 6 noites"
+      },
+      jericoacoara: {
+        title: "Jericoacoara — 7 Dias Aventura",
+        price: "R$ 3.290",
+        desc: "Paraíso de dunas, lagoas e pôr do sol inesquecível.",
+        highlights: ["Pousada charmosa", "Passeio de buggy", "Aula de kitesurf opcional", "Jantar na praia"],
+        duration: "7 dias / 6 noites"
+      },
+      canada: {
+        title: "Canadá — Rockies & Lagos",
+        price: "R$ 9.490",
+        desc: "Natureza selvagem nos Rockies canadenses com lagos de tirar o fôlego.",
+        highlights: ["Hotel com vista para o lago", "Passeios de barco e trilhas", "Observação de vida selvagem", "Guia bilíngue"],
+        duration: "12 dias / 11 noites"
+      }
+    };
+
+    function showPackageModal(pkg) {
+      const data = packageData[pkg];
+      if (!data) return;
+
+      const html = `
+        <div class="modal-header">
+          <span class="modal-tag">Pacote Promocional</span>
+          <h2>${data.title}</h2>
+          <div class="modal-price">${data.price} <small>por pessoa</small></div>
+        </div>
+        <p class="modal-desc">${data.desc}</p>
+        <div class="modal-meta">
+          <div><i data-feather="calendar"></i> ${data.duration}</div>
+        </div>
+        <h4>O que está incluso:</h4>
+        <ul class="modal-highlights">
+          ${data.highlights.map(h => `<li><i data-feather="check-circle"></i> ${h}</li>`).join('')}
+        </ul>
+        <div class="modal-actions">
+          <button class="btn-primary" data-action="contact">Quero este pacote</button>
+          <button class="btn-secondary" data-action="close">Fechar</button>
+        </div>
+      `;
+      const modal = document.getElementById('modal');
+      document.getElementById('modal-body').innerHTML = html;
+      modal.hidden = false;
+      modal.style.display = 'flex';
+      feather.replace();
+
+      // Re-attach listeners for the dynamic buttons
+      attachModalActionListeners();
+    }
+
+    // ==================== Modal de Serviços ====================
+    const serviceData = {
+      tours: {
+        title: "Tours Guiados Personalizados",
+        desc: "Nossos guias são locais apaixonados que transformam sua viagem em uma experiência autêntica.",
+        points: ["Grupos pequenos (máx 8 pessoas)", "Roteiros sob medida", "Ingressos e transporte inclusos", "Suporte em português"]
+      },
+      foto: {
+        title: "Fotografia Profissional",
+        desc: "Fotógrafos especializados em viagens para eternizar seus melhores momentos.",
+        points: ["Ensaio no destino", "Entrega em alta resolução", "Álbum digital + impresso", "Drone incluso em pacotes premium"]
+      },
+      veiculo: {
+        title: "Aluguel de Veículos & Transfers",
+        desc: "Mobilidade segura e confortável do início ao fim da sua jornada.",
+        points: ["Frota renovada 2024/2025", "Seguro total incluso", "Motorista particular disponível", "Assistência 24h em todo o Brasil"]
+      }
+    };
+
+    function showServiceModal(type) {
+      const data = serviceData[type];
+      if (!data) return;
+
+      const html = `
+        <div class="modal-header">
+          <h2>${data.title}</h2>
+        </div>
+        <p class="modal-desc">${data.desc}</p>
+        <ul class="modal-highlights">
+          ${data.points.map(p => `<li><i data-feather="check"></i> ${p}</li>`).join('')}
+        </ul>
+        <div class="modal-actions">
+          <button class="btn-primary" data-action="contact">Solicitar orçamento</button>
+          <button class="btn-secondary" data-action="close">Fechar</button>
+        </div>
+      `;
+      const modal = document.getElementById('modal');
+      document.getElementById('modal-body').innerHTML = html;
+      modal.hidden = false;
+      modal.style.display = 'flex';
+      feather.replace();
+
+      attachModalActionListeners();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      if (!modal) return;
+      modal.hidden = true;
+      modal.style.display = 'none';
+      const body = modal.querySelector('#modal-body');
+      if (body) body.innerHTML = '';
+    }
+
+    function attachModalActionListeners() {
+      const modal = document.getElementById('modal');
+      const body = document.getElementById('modal-body');
+      if (!body) return;
+
+      // Remove old listeners by cloning (simple way)
+      const newBody = body.cloneNode(true);
+      body.parentNode.replaceChild(newBody, body);
+
+      // Attach new listeners
+      newBody.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+
+        const action = btn.dataset.action;
+        if (action === 'close') {
+          closeModal();
+        } else if (action === 'contact') {
+          closeModal();
+          setTimeout(() => {
+            const contato = document.getElementById('contato');
+            if (contato) contato.scrollIntoView({ behavior: 'smooth' });
+          }, 150);
+        }
+      });
+    }
+
+    // ===== MODAL SAFETY + CLOSE LOGIC (MUITO MAIS ROBUSTO) =====
+    function forceHideModal() {
+      const modal = document.getElementById('modal');
+      if (modal) {
+        modal.hidden = true;
+        modal.style.display = 'none';
+      }
+    }
+
+    function initModalSystem() {
+      const modal = document.getElementById('modal');
+      if (!modal) return;
+
+      // Força escondido várias vezes (defesa contra bfcache e restauração)
+      forceHideModal();
+      setTimeout(forceHideModal, 50);
+      setTimeout(forceHideModal, 200);
+      setTimeout(forceHideModal, 800);
+
+      // Clique no overlay (fora do conteúdo) fecha
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+
+      // Tecla ESC fecha o modal
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          const isOpen = !modal.hidden && modal.style.display !== 'none';
+          if (isOpen) closeModal();
+        }
+      });
+
+      // Fecha também ao clicar no botão X (caso ainda tenha onclick antigo)
+      const closeBtn = modal.querySelector('.modal-close');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+          e.stopImmediatePropagation();
+          closeModal();
+        });
+      }
+    }
+
+    // Inicializa o sistema de modal com segurança máxima
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initModalSystem);
+    } else {
+      initModalSystem();
+    }
+
+    // Defesa extra contra bfcache (páginas que voltam do histórico)
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) {
+        forceHideModal();
+      }
+    });
+
+    // ===== SEGURANÇA MÁXIMA: Força esconder o modal em qualquer carregamento =====
+    function ultraForceHideModal() {
+      const m = document.getElementById('modal');
+      if (m) {
+        m.setAttribute('hidden', '');
+        m.style.setProperty('display', 'none', 'important');
+      }
+    }
+    ultraForceHideModal();
+    window.addEventListener('load', ultraForceHideModal);
+    setTimeout(ultraForceHideModal, 100);
+    setTimeout(ultraForceHideModal, 500);
+
+    // ==================== Formulário de Contato ====================
+    function handleContactForm(e) {
+      e.preventDefault();
+      const form = e.target;
+      const feedback = document.getElementById('form-feedback');
+
+      // Simulação de envio (em produção seria fetch para API)
+      feedback.textContent = "Enviando sua mensagem...";
+      feedback.style.color = "#f56c11";
+
+      setTimeout(() => {
+        feedback.textContent = "Mensagem enviada com sucesso! Entraremos em contato em até 24h.";
+        feedback.style.color = "#22c55e";
+        form.reset();
+
+        setTimeout(() => {
+          feedback.textContent = "";
+        }, 4500);
+      }, 1100);
+    }
+
+    // ==================== Melhorias de UX extras ====================
+    // Fecha banner de install após 30s se não interagido
+    setTimeout(() => {
+      const banner = document.getElementById('install-banner');
+      if (banner && !banner.hidden && !deferredPrompt) {
+        banner.hidden = true;
+      }
+    }, 30000);
+
+    // Detecta quando o app foi instalado
+    window.addEventListener('appinstalled', () => {
+      console.log('🎉 PWA instalado com sucesso!');
+      const banner = document.getElementById('install-banner');
+      if (banner) banner.hidden = true;
+    });
+
+    console.log('%c[KAYAK] Site carregado com PWA + UX melhorada', 'color:#f56c11');
   </script>
 </body>
-
 </html>

@@ -1,94 +1,206 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>yourname.</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <title>KAYAK • Portfólio de Experiências</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div id="loading">
-        <div id="spinner"></div>
-    </div>
-    <div id="header" class="animated slideInDown" style="animation-delay:1.8s;">
-    <div id="title">yourname.</div><br>
-    <div id="links">
-        <a href="#work">Projetos</a>
-        <a href="#skills">skills</a>
-        <a href="/index.html" style="margin:0px 60px;">Trabalho</a>
-        <a href="#contact">contact</a>
-    </div>
-    </div>
 
-    <center>
-    <div id="middle">
-        <div id="tagline" class="animated zoomIn" style="animation-delay:1.8s;">
-            if you're reading this, that mean's you can read<br>
-            <button class="btn_one">haha ok</button>
+    <!-- Header (consistente com o site principal) -->
+    <header class="kayak-header">
+        <div class="kayak-nav">
+            <div class="kayak-brand">KAYAK</div>
+            <nav class="kayak-links">
+                <a href="#experiencias">Experiências</a>
+                <a href="#destinos">Destinos</a>
+                <a href="#galeria">Galeria</a>
+                <a href="../index.html" class="kayak-back">← Voltar ao site</a>
+            </nav>
+            <button class="kayak-nav-toggle" aria-label="Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="kayak-hero">
+        <div class="kayak-hero-content">
+            <div class="hero-badge">Portfólio de Experiências • 2026</div>
+            <h1>Viagens que contam <span class="accent">histórias</span>.</h1>
+            <p>Um portfólio curado das experiências mais marcantes que já organizamos. Histórias reais, clientes reais e momentos que transformamos em memórias para sempre.</p>
+            <div class="hero-actions">
+                <a href="#experiencias" class="btn btn-primary">Ver experiências</a>
+                <a href="#galeria" class="btn btn-secondary">Explorar galeria</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Estatísticas -->
+    <section class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <strong>147</strong>
+                <span>Viagens realizadas</span>
+            </div>
+            <div class="stat-item">
+                <strong>89</strong>
+                <span>Destinos únicos</span>
+            </div>
+            <div class="stat-item">
+                <strong>4.8</strong>
+                <span>Nota média</span>
+            </div>
+            <div class="stat-item">
+                <strong>312</strong>
+                <span>Clientes transformados</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiências em Destaque -->
+    <section id="experiencias" class="section">
+        <div class="section-header">
+            <h2>Experiências em Destaque</h2>
+            <p>Selecionamos algumas das viagens mais especiais que já entregamos. Clique nos cartões para ler os relatos completos.</p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Todas</button>
+            <button class="filter-btn" data-filter="europa">Europa</button>
+            <button class="filter-btn" data-filter="brasil">Brasil</button>
+            <button class="filter-btn" data-filter="america-norte">América do Norte</button>
+            <button class="filter-btn" data-filter="asia">Ásia</button>
+        </div>
+
+        <div class="experiences-grid" id="experiences-grid">
+            <!-- Gerado via JS -->
+        </div>
+    </section>
+
+    <!-- Destinos Populares -->
+    <section id="destinos" class="section destinations-section">
+        <div class="section-header">
+            <h2>Destinos que mais marcamos</h2>
+            <p>Os lugares que nossos clientes mais se apaixonam</p>
+        </div>
+        <div class="destinations-grid-mini">
+            <div class="mini-dest" onclick="filterByRegion('europa')">
+                <span class="mini-tag">Europa</span>
+                <h4>Paris, França</h4>
+                <p>42 viagens • 4.9/5</p>
+            </div>
+            <div class="mini-dest" onclick="filterByRegion('brasil')">
+                <span class="mini-tag">Brasil</span>
+                <h4>Jericoacoara, CE</h4>
+                <p>31 viagens • 4.7/5</p>
+            </div>
+            <div class="mini-dest" onclick="filterByRegion('america-norte')">
+                <span class="mini-tag">América do Norte</span>
+                <h4>Moraine Lake, Canadá</h4>
+                <p>19 viagens • 4.9/5</p>
+            </div>
+            <div class="mini-dest" onclick="filterByRegion('brasil')">
+                <span class="mini-tag">Brasil</span>
+                <h4>Fortaleza + Canoa Quebrada</h4>
+                <p>27 viagens • 4.5/5</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria -->
+    <section id="galeria" class="section gallery-section">
+        <div class="section-header">
+            <h2>Momentos capturados</h2>
+            <p>Alguns dos instantes mais bonitos que nossos viajantes compartilharam conosco</p>
+        </div>
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Populando via JS -->
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Quer viver uma dessas histórias?</h2>
+            <p>Escolha um dos nossos pacotes ou conte para nossa equipe o que você está buscando. Nós montamos a experiência perfeita para você.</p>
+            <div class="cta-buttons">
+                <a href="../index.html#pacotes" class="btn btn-primary">Ver pacotes disponíveis</a>
+                <a href="#contato" class="btn btn-secondary">Falar com a equipe</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Contato -->
+    <section id="contato" class="section form-section">
+        <div class="form-container">
+            <div class="form-header">
+                <h3>Pronto para criar sua própria história?</h3>
+                <p>Preencha o formulário e nossa equipe entra em contato em até 24 horas para montar sua viagem dos sonhos.</p>
+            </div>
+            
+            <form class="kayak-form" onsubmit="handleKayakForm(event)">
+                <div class="form-row">
+                    <input type="text" name="nome" placeholder="Seu nome completo" required>
+                    <input type="email" name="email" placeholder="Seu melhor e-mail" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="destino" placeholder="Destino desejado" required>
+                    <input type="text" name="data" placeholder="Mês/ano aproximado">
+                </div>
+                <textarea name="mensagem" placeholder="Conte mais sobre o tipo de experiência que você busca (romântica, aventura, familiar, etc)" rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary btn-full">Enviar para a equipe KAYAK</button>
+                <p class="form-feedback" id="kayak-feedback"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="kayak-footer">
+        <p>© 2026 KAYAK Viagens &amp; Aventuras — Sonhe. Viaje. Viva.</p>
+        <a href="../index.html">Voltar para a página inicial</a>
+    </footer>
+
+    <!-- Modal de Experiência -->
+    <div id="story-modal" class="modal" onclick="closeStoryModal(event)">
+        <div class="modal-content" onclick="event.stopImmediatePropagation()">
+            <button class="modal-close" onclick="closeStoryModal()"><i class="fa-solid fa-times"></i></button>
+            
+            <div class="modal-hero" id="modal-hero"></div>
+            
+            <div class="modal-body">
+                <div class="modal-meta">
+                    <span class="modal-tag" id="modal-tag"></span>
+                    <span class="modal-date" id="modal-date"></span>
+                </div>
+                
+                <h2 id="modal-title"></h2>
+                <div class="modal-rating" id="modal-rating"></div>
+                
+                <div class="modal-story" id="modal-story"></div>
+                
+                <div class="modal-highlights">
+                    <h4><i class="fa-solid fa-star"></i> O que nossos clientes mais amaram</h4>
+                    <ul id="modal-highlights"></ul>
+                </div>
+                
+                <div class="modal-tips">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Insight da equipe KAYAK</h4>
+                    <p id="modal-tip"></p>
+                </div>
+            </div>
         </div>
     </div>
-    </center>
 
-    <div id="portfolio">
-             <div id="skills">
-                 <h1>skills.</h1>   
-                 <div>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum tincidunt nulla, id semper mi cursus ac. Fusce turpis urna, condimentum sit amet dolor at, vulputate ultrices massa. Vestibulum non euismod nulla, eu pretium risus. Curabitur porta molestie vulputate. Sed tortor enim, rhoncus vel mauris vitae, elementum condimentum augue. Donec fermentum lobortis lectus, in feugiat turpis faucibus et. Pellentesque luctus metus vitae augue lobortis sagittis vitae sit amet enim. Morbi egestas velit ac arcu fermentum lacinia. Nullam eget hendrerit neque. Cras et laoreet ante. Vivamus condimentum euismod commodo. Nulla pulvinar, turpis vitae condimentum tempor, ex ex eleifend quam, et maximus sapien mi sed est. Donec elit mi, dictum nec magna quis, mollis sollicitudin ligula. Maecenas ullamcorper ante vel ullamcorper mollis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                        </p>
-                 </div> 
-             </div>
-         
-              <div id="work">
-                 <h1>works.</h1>
-
-                 <div class="project">
-                 <h2>project title 1</h2>
-                 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum tincidunt nulla, id semper mi cursus ac. Fusce turpis urna, condimentum sit amet dolor at, vulputate ultrices massa. Vestibulum non euismod nulla, eu pretium risus. Curabitur porta molestie vulputate.</div>
-                 <button class="btn_one">visit project</button>
-                </div>
-
-                <div class="project">
-                 <h2>project title 2</h2>
-                 <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum tincidunt nulla, id semper mi cursus ac. Fusce turpis urna, condimentum sit amet dolor at, vulputate ultrices massa. Vestibulum non euismod nulla, eu pretium risus. Curabitur porta molestie vulputate.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In bibendum tincidunt nulla, id semper mi cursus ac. Fusce turpis urna, condimentum sit amet dolor at, vulputate ultrices massa. Vestibulum non euismod nulla, eu pretium risus. Curabitur porta molestie vulputate.
-                 </div>
-                 <button class="btn_one">visit project</button>
-                 <button class="btn_two">code</button>
-                </div>
-
-             </div>
-         
-              <div id="contact">
-                 <h1>contact.</h1> 
-                 <form>
-                     <input type="text" placeholder="name" required>
-                     <input type="email" placeholder="email" required><br>
-                     <textarea placeholder="your message" required rows="5"></textarea><br>
-                     <button class="btn_one">send</button>
-                 </form> 
-                 <div id="details">
-                    <a class="btn_social"><i class="fas fa-phone"></i></a>
-                    <a class="btn_social"><i class="fas fa-at"></i></a>
-                    <a class="btn_social"><i class="fab fa-twitter"></i></a>
-                    <a class="btn_social"><i class="fab fa-dribbble"></i></a>
-                 </div>   
-             </div>
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close"><i class="fa-solid fa-times"></i></button>
+        <img id="lightbox-img" alt="Foto ampliada">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
     </div>
-    <div id="footer">
-        made on earth by a human <br><br> <a href="https://imfunniee.github.io">imfunniee</a>
-    </div>
-<script src="index.js" type="text/javascript"></script>
- <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js")
-        .then(() => console.log("✅ Service Worker registrado na página 2"))
-        .catch(err => console.log("Erro:", err));
-    }
-  </script>
+
+    <script src="index.js"></script>
 </body>
 </html>

@@ -1,22 +1,38 @@
 {
   "name": "KAYAK - Viagens & Aventuras",
   "short_name": "KAYAK",
-  "description": "Pacotes de viagem e portfólio",
-  "start_url": "/index.html",
+  "description": "Pacotes de viagem, aventuras e experiências únicas pelo Brasil e mundo.",
+  "id": "./?source=pwa",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#2196f3",
-  "orientation": "portrait-primary",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#0f172a",
+  "theme_color": "#f56c11",
+  "lang": "pt-BR",
+  "orientation": "any",
+  "categories": ["travel", "lifestyle", "entertainment"],
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "icons/icon-192.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "icons/icon-512.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Ver Pacotes",
+      "short_name": "Pacotes",
+      "description": "Conheça nossos pacotes de viagem",
+      "url": "./#pacotes",
+      "icons": [{ "src": "icons/icon-192.jpg", "sizes": "192x192" }]
     }
   ]
 }
