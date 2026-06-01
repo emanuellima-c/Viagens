@@ -1,14 +1,15 @@
-const CACHE_NAME = "kayak-v5";
-const OFFLINE_URL = "/offline.html";
+const CACHE_NAME = "kayak-v6";
+const OFFLINE_URL = "offline.html";
 
 const CORE_ASSETS = [
-  "/",
-  "/index.html",
-  "/offline.html",
-  "/styles/style.css",
-  "/manifest.json",
-  "/icons/icon-192.jpg",
-  "/icons/icon-512.jpg",
+  "./",
+  "index.html",
+  "offline.html",
+  "styles/style.css",
+  "manifest.json",
+  "icons/icon-192.jpg",
+  "icons/icon-512.jpg",
+  "assets/bgh.jpg",   // Hero background - critical for first paint in PWA
   // Página 2 não é mais precarregada (muda com frequência durante desenvolvimento)
 ];
 
@@ -64,7 +65,7 @@ self.addEventListener("fetch", (event) => {
           const offlinePage = await caches.match(OFFLINE_URL);
           if (offlinePage) return offlinePage;
 
-          const indexFallback = await caches.match("/index.html");
+          const indexFallback = await caches.match("index.html");
           return indexFallback || new Response("Você está offline. Tente novamente mais tarde.", {
             headers: { "Content-Type": "text/plain; charset=utf-8" }
           });

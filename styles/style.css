@@ -104,7 +104,7 @@ a {
 header {
   min-height: 100vh;
   background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 23, 42, 0.72)), 
-              no-repeat center 35%/cover url('/assets/bgh.jpg');
+              no-repeat center 35%/cover url('../assets/bgh.jpg');
   position: relative;
   display: flex;
   flex-direction: column;
