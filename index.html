@@ -31,6 +31,10 @@
   </div>
 
   <header>
+    <!-- Hero background as real image for reliable PWA loading on GitHub Pages subfolders -->
+    <img src="assets/bgh.jpg" class="hero-bg" alt="" aria-hidden="true">
+    <div class="hero-overlay"></div>
+
     <nav>
       <div class="nav-brand">
         <p>KAYAK</p>
@@ -271,17 +275,76 @@
       });
     });
 
-    // ==================== PWA: Service Worker + Install Prompt ====================
+    // ==================== PWA: Service Worker + Install Prompt + Update Handling ====================
     let deferredPrompt;
 
-    // Registra o Service Worker
+    // Registra o Service Worker com detecção robusta de updates (importante para GitHub Pages + PWA)
     if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        // Caminho relativo → funciona tanto em localhost quanto no GitHub Pages
-        navigator.serviceWorker.register('./service-worker.js')
-          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
-          .catch(err => console.warn('SW falhou:', err));
+      window.addEventListener('load', async () => {
+        try {
+          const reg = await navigator.serviceWorker.register('./service-worker.js');
+          console.log('✅ Service Worker registrado:', reg.scope);
+
+          // Verifica se há atualização disponível
+          reg.addEventListener('updatefound', () => {
+            const newWorker = reg.installing;
+            if (!newWorker) return;
+
+            newWorker.addEventListener('statechange', () => {
+              if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                // Novo SW pronto → avisa o usuário para recarregar
+                showUpdateBanner(reg);
+              }
+            });
+          });
+
+          // Checa imediatamente se já tem SW esperando
+          if (reg.waiting) {
+            showUpdateBanner(reg);
+          }
+
+          // Força checagem de update a cada visita (útil em GitHub Pages)
+          reg.update();
+        } catch (err) {
+          console.warn('SW falhou:', err);
+        }
       });
+    }
+
+    // Banner discreto de "Nova versão disponível"
+    function showUpdateBanner(reg) {
+      const banner = document.getElementById('install-banner');
+      if (!banner) return;
+
+      // Reaproveita o banner de install visualmente, mas muda o texto
+      const content = banner.querySelector('.install-content');
+      if (content) {
+        content.innerHTML = `
+          <span>Nova versão do app disponível com melhorias!</span>
+          <div class="install-actions">
+            <button id="update-btn" class="btn-install">Atualizar agora</button>
+            <button id="update-dismiss" class="btn-dismiss">Depois</button>
+          </div>
+        `;
+      }
+      banner.hidden = false;
+
+      // Listener para atualizar
+      const updateBtn = document.getElementById('update-btn');
+      if (updateBtn) {
+        updateBtn.addEventListener('click', () => {
+          if (reg.waiting) reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+          // Recarrega após o novo SW assumir controle
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            window.location.reload();
+          }, { once: true });
+        });
+      }
+
+      const dismiss = document.getElementById('update-dismiss');
+      if (dismiss) {
+        dismiss.addEventListener('click', () => banner.hidden = true);
+      }
     }
 
     // Captura o evento de instalação do navegador

@@ -1,4 +1,4 @@
-const CACHE_NAME = "kayak-v6";
+const CACHE_NAME = "kayak-v7";
 const OFFLINE_URL = "offline.html";
 
 const CORE_ASSETS = [
@@ -39,6 +39,13 @@ self.addEventListener("activate", (event) => {
       await self.clients.claim();
     })()
   );
+});
+
+// Permite que a página mande o novo SW ativar imediatamente (botão "Atualizar agora")
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 // Estratégia: Cache First para assets estáticos, Network First para navegação
